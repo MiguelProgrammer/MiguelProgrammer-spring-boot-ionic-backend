@@ -9,10 +9,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.estudandoemcasa.cursomg.domain.Categoria;
 import com.estudandoemcasa.cursomg.domain.Cidade;
+import com.estudandoemcasa.cursomg.domain.Cliente;
+import com.estudandoemcasa.cursomg.domain.Endereco;
 import com.estudandoemcasa.cursomg.domain.Estado;
 import com.estudandoemcasa.cursomg.domain.Produto;
+import com.estudandoemcasa.cursomg.domain.enums.TipoCliente;
 import com.estudandoemcasa.cursomg.repositories.CategoriaRepository;
 import com.estudandoemcasa.cursomg.repositories.CidadeRepository;
+import com.estudandoemcasa.cursomg.repositories.ClienteRepository;
+import com.estudandoemcasa.cursomg.repositories.EnderecoRepository;
 import com.estudandoemcasa.cursomg.repositories.EstadoRepository;
 import com.estudandoemcasa.cursomg.repositories.ProdutoRepository;
 
@@ -20,16 +25,22 @@ import com.estudandoemcasa.cursomg.repositories.ProdutoRepository;
 public class CursomgApplication implements CommandLineRunner {
 
 	@Autowired
-	CategoriaRepository categoriaRepository;
+	private CategoriaRepository categoriaRepository;
 	
 	@Autowired
-	ProdutoRepository produtoRepository;
+	private ProdutoRepository produtoRepository;
 	
 	@Autowired
-	EstadoRepository estadoRepository;
+	private EstadoRepository estadoRepository;
 	
 	@Autowired
-	CidadeRepository cidadeRepository;
+	private CidadeRepository cidadeRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 	
 
 	public static void main(String[] args) {
@@ -68,6 +79,33 @@ public class CursomgApplication implements CommandLineRunner {
 		
 		estadoRepository.saveAll(Arrays.asList(est1,est2));
 		cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
+
+		Cliente cli1 = new Cliente(null, "Miguel Silva", "miguel@gmail.com", "123.456.789-10", TipoCliente.PESSOAFISICA);
+		cli1.getTelefones().addAll(Arrays.asList("11958020000","11958021111"));
+		
+		Endereco e1 = new Endereco(null, "Rua floresta", "777", "AP: 317", "Jardim dos Vales", "010203", cli1, c1);		
+		Endereco e2 = new Endereco(null, "Rua Satelite", "123", "Casa 7", "Madri Juana", "077859", cli1, c2);
+		
+		cli1.getEnderecos().addAll(Arrays.asList(e1,e2));
+		
+		clienteRepository.saveAll(Arrays.asList(cli1));
+		
+		enderecoRepository.saveAll(Arrays.asList(e1,e2));
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.estudandoemcasa.cursomg;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +14,20 @@ import com.estudandoemcasa.cursomg.domain.Cidade;
 import com.estudandoemcasa.cursomg.domain.Cliente;
 import com.estudandoemcasa.cursomg.domain.Endereco;
 import com.estudandoemcasa.cursomg.domain.Estado;
+import com.estudandoemcasa.cursomg.domain.Pagamento;
+import com.estudandoemcasa.cursomg.domain.PagamentoComBoleto;
+import com.estudandoemcasa.cursomg.domain.PagamentoComCartao;
+import com.estudandoemcasa.cursomg.domain.Pedido;
 import com.estudandoemcasa.cursomg.domain.Produto;
+import com.estudandoemcasa.cursomg.domain.enums.EstadoPagamento;
 import com.estudandoemcasa.cursomg.domain.enums.TipoCliente;
 import com.estudandoemcasa.cursomg.repositories.CategoriaRepository;
 import com.estudandoemcasa.cursomg.repositories.CidadeRepository;
 import com.estudandoemcasa.cursomg.repositories.ClienteRepository;
 import com.estudandoemcasa.cursomg.repositories.EnderecoRepository;
 import com.estudandoemcasa.cursomg.repositories.EstadoRepository;
+import com.estudandoemcasa.cursomg.repositories.PagamentoRepository;
+import com.estudandoemcasa.cursomg.repositories.PedidoRepository;
 import com.estudandoemcasa.cursomg.repositories.ProdutoRepository;
 
 @SpringBootApplication
@@ -26,22 +35,27 @@ public class CursomgApplication implements CommandLineRunner {
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
-	
+
 	@Autowired
 	private ProdutoRepository produtoRepository;
-	
+
 	@Autowired
 	private EstadoRepository estadoRepository;
-	
+
 	@Autowired
 	private CidadeRepository cidadeRepository;
-	
+
 	@Autowired
 	private ClienteRepository clienteRepository;
-	
+
 	@Autowired
 	private EnderecoRepository enderecoRepository;
 	
+	@Autowired
+	private PedidoRepository pedidoRepository;
+	
+	@Autowired
+	private PagamentoRepository pagamentoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursomgApplication.class, args);
@@ -92,16 +106,22 @@ public class CursomgApplication implements CommandLineRunner {
 		
 		enderecoRepository.saveAll(Arrays.asList(e1,e2));
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+		Pedido ped1	 = new Pedido(null, sdf.parse("30/07/2021 10:31"), cli1, e1);
+		Pedido ped2	 = new Pedido(null, sdf.parse("10/08/2021 19:33"), cli1, e2);
+
+		Pagamento pgto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
+		ped1.setPagamento(pgto1);
+		
+		Pagamento pgto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("29/07/2021 00:00"), null);
+		ped2.setPagamento(pgto2);
 		
 		
+		cli1.getPedidos().addAll(Arrays.asList(ped1,ped2));
 		
-		
-		
-		
-		
-		
-		
-		
+		pedidoRepository.saveAll(Arrays.asList(ped1,ped2));
+		pagamentoRepository.saveAll(Arrays.asList(pgto1,pgto2));	
 		
 		
 		

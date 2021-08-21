@@ -15,7 +15,7 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository repo;
 	
-	public Categoria buscar(Integer id){
+	public Categoria find(Integer id){
 		Optional<Categoria> obj = repo.findById(id);
 		if(obj.isEmpty()) {
 			throw new ObjectNotFoundException("Objeto não encontrado. ID = " + id +" "
@@ -24,8 +24,18 @@ public class CategoriaService {
 		return obj.orElse(null);
 	}
 	
+	/*
+	 * o método SAVE serve tanto para update quanto para insert desde que ambos estejam
+	 * diferentes de branco ou nulo
+	 */
+	
 	public Categoria insert(Categoria obj) {
 		obj.setId(null);
+		return repo.save(obj);
+	}
+
+	public Categoria update(Categoria obj) {
+		this.find(obj.getId());
 		return repo.save(obj);
 	}
 }

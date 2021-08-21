@@ -31,6 +31,9 @@ import com.estudandoemcasa.cursomg.repositories.PagamentoRepository;
 import com.estudandoemcasa.cursomg.repositories.PedidoRepository;
 import com.estudandoemcasa.cursomg.repositories.ProdutoRepository;
 
+/*
+ * Application
+ */
 @SpringBootApplication
 public class CursomgApplication implements CommandLineRunner {
 

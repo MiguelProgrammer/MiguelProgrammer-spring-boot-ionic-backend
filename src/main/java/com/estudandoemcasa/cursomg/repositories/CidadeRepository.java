@@ -4,7 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.estudandoemcasa.cursomg.domain.Cidade;
-
+/*
+ * Camada de Acesso a Dados
+ */
 @Repository
 public interface CidadeRepository extends JpaRepository<Cidade,Integer>{
 

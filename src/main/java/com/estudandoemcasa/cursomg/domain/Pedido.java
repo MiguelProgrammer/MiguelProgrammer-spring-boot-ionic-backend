@@ -16,7 +16,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
+/*
+ * Camada de Dominio
+ */
 @Entity
 public class Pedido implements Serializable {
 	private static final long serialVersionUID = 1L;

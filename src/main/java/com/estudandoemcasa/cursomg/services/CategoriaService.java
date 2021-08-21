@@ -11,10 +11,15 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.estudandoemcasa.cursomg.domain.Categoria;
+import com.estudandoemcasa.cursomg.dto.CategoriaDTO;
 import com.estudandoemcasa.cursomg.repositories.CategoriaRepository;
 import com.estudandoemcasa.cursomg.services.exceptions.DataIntegretyException;
 import com.estudandoemcasa.cursomg.services.exceptions.ObjectNotFoundException;
 
+import antlr.debug.NewLineEvent;
+/*
+ * Camada de Servico
+ */
 @Service
 public class CategoriaService {
 
@@ -64,7 +69,9 @@ public class CategoriaService {
 		return repo.findAll(pageRequeste);
 	}
 	
-	
+	public Categoria fromDTO(CategoriaDTO objDto) {
+		return new Categoria(objDto.getId(),objDto.getNome());
+	}
 	
 	
 	

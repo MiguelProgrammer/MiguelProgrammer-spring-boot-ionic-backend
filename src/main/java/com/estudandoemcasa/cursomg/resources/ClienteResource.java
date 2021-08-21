@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.estudandoemcasa.cursomg.domain.Cliente;
 import com.estudandoemcasa.cursomg.services.ClienteService;
-
+/*
+ * Controladore REST
+ */
 @RestController
 @RequestMapping(value = "/clientes")// <- endpoint rest
 public class ClienteResource {

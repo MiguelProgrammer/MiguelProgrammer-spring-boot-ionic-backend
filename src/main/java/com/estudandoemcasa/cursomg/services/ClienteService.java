@@ -9,7 +9,9 @@ import com.estudandoemcasa.cursomg.domain.Categoria;
 import com.estudandoemcasa.cursomg.domain.Cliente;
 import com.estudandoemcasa.cursomg.repositories.ClienteRepository;
 import com.estudandoemcasa.cursomg.services.exceptions.ObjectNotFoundException;
-
+/*
+ * Camada de Servico
+ */
 @Service
 public class ClienteService {
 

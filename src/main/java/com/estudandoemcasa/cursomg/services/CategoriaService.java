@@ -15,8 +15,6 @@ import com.estudandoemcasa.cursomg.dto.CategoriaDTO;
 import com.estudandoemcasa.cursomg.repositories.CategoriaRepository;
 import com.estudandoemcasa.cursomg.services.exceptions.DataIntegretyException;
 import com.estudandoemcasa.cursomg.services.exceptions.ObjectNotFoundException;
-
-import antlr.debug.NewLineEvent;
 /*
  * Camada de Servico
  */

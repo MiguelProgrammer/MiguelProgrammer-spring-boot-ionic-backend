@@ -25,12 +25,12 @@ public class CategoriaService {
 	private CategoriaRepository repo;
 
 	public Categoria find(Integer id) {
-		Optional<Categoria> obj = repo.findById(id);
-		if (obj.isEmpty()) {
+		Categoria obj = repo.findById(id).orElse(null);
+		if (obj == null) {
 			throw new ObjectNotFoundException(
 					"Objeto não encontrado. ID = " + id + " " + ", Tipo: " + Categoria.class.getName());
 		}
-		return obj.orElse(null);
+		return obj;
 	}
 
 	/*

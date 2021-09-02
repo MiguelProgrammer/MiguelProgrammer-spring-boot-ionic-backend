@@ -3,11 +3,14 @@ package com.estudandoemcasa.cursomg.services.validation.utils;
 public class BR {
 
 	/*
+	 * Válidador de CPF && PESSOA JURIDICA
+	 * 
 	 * WEIGHT_SSN = CPF
 	 * WEIGHT_TFN = CNPJ
 	 */
 	
-	private static final int[] WEIGHT_SSN = { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 }, 
+	private static final int[] 
+			WEIGHT_SSN = { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 }, 
 			WEIGHT_TFN = { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
 
 	private static int sum(int[] weight, char[] numbers, int length) {

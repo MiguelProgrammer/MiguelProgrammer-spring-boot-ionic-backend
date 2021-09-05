@@ -3,10 +3,12 @@ package com.estudandoemcasa.cursomg.domain;
 import javax.persistence.Entity;
 
 import com.estudandoemcasa.cursomg.domain.enums.EstadoPagamento;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 /*
  * Camada de Dominio
  */
 @Entity
+@JsonTypeName("pagamentoComCartao")
 public class PagamentoComCartao extends Pagamento {
 	private static final long serialVersionUID = 1L;
 

@@ -35,6 +35,7 @@ public class CategoriaResource {
 
 		Categoria obj = servico.find(id);
 		return ResponseEntity.ok().body(obj);
+		
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

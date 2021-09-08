@@ -40,7 +40,7 @@ public class PedidoService {
 	
 	public Pedido find(Integer id){
 		Optional<Pedido> obj = repo.findById(id);
-		if(obj.isEmpty()) {
+		if(obj == null) {
 			throw new ObjectNotFoundException("Objeto não encontrado. ID = " + id +" "
 					+ ", Tipo: " + Categoria.class.getName());
 		}

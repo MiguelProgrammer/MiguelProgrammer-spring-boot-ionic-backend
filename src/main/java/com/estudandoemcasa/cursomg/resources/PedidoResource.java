@@ -33,7 +33,6 @@ public class PedidoResource {
 	}	
 	
 
-
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody Pedido obj) {
 		obj = servico.insert(obj);

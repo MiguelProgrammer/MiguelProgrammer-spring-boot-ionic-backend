@@ -1,8 +1,11 @@
 package com.estudandoemcasa.cursomg.domain;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -135,5 +138,38 @@ public class Pedido implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		
+		NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("bt","BR"));
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+		
+		StringBuilder builder = new StringBuilder();
+		builder.append("\nPedido número: ");
+		builder.append(getId());
+		builder.append(", Intante: ");
+		builder.append(sdf.format(getInstante()));
+		builder.append(", Cliente: ");
+		builder.append(getCliente().getNome());
+		builder.append(", Situaçaõ do Pagamento: ");
+		builder.append(getPagamento().getEstado().getDescricao());
+		builder.append("\nDetalhes:\n");
+		
+		for(ItemPedido ip : getItens()) {
+			builder.append(ip.toString());
+		}
+		
+		/*
+		 * forEach por lambda está adicionando colchetes [ ]
+		 */
+        //itens.forEach(itens->builder.append(getItens().toString()));
+
+		builder.append("Valor Total: R$ ");
+		builder.append(nf.format(getValorTotal()));
+		 
+		return builder.toString();
+	}
+	
 	
 }
